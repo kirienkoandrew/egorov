@@ -1,6 +1,6 @@
 def check_password_dictionary(x):
     with open('easy_passwords.txt') as file:
-        lst = file.readlines()
-        print(lst)
+        lst = file.read()
+        return x in lst
 
-check_password_dictionary('asd')
+
