@@ -1,5 +1,7 @@
 class Vector:
-    """Ваша задача — создать класс Vector, который хранит в себе коллекцию целых чисел.  У класса Vector должны быть реализованы:
+    """Давайте создадим класс Vector, экземпляры которого будут представлять собой контейнеры для хранения только целых чисел.
+
+Ваша задача — создать класс Vector, который хранит в себе коллекцию целых чисел.  У класса Vector должны быть реализованы:
 
 метод __init__, принимающий произвольное количество аргументов. Среди всех переданных аргументов необходимо оставить только целые числа и сохранить их в экземпляр в виде списка;
 
@@ -8,17 +10,21 @@ class Vector:
 
 «Пустой вектор», если наш вектор не хранит в себе значения"""
     def __init__(self, *args):
-        self.lst = [i for i in args if isinstance(i, int) and not isinstance(i, bool)]
+        self.lst = args
 
-    def __str__(self):
+    @property
+    def lst(self):
+        return self.__lst
+
+    @lst.setter
+    def lst(self, args):
+        self.__lst = tuple(sorted([i for i in args if isinstance(i, int) and not isinstance(i, bool)]))
+
+    def __str__(self) -> str:
         if self.lst:
-            res = f"{', '.join(str(i) for i in sorted(self.lst))}"
-            return f'Вектор({res})'
+            return f'Вектор{self.lst}'
         else:
-            return 'Пустой вектор'
+            return "Пустой вектор"
 
-v = Vector(1, 2, 3, 'asd', 5)
-v1 = Vector()
+v = Vector(2, 3, 'sad', True, 1)
 print(v)
-print(v1)
-
